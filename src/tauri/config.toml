@@ -1,0 +1,33 @@
+[tauri]
+name: "codex-portable"
+version: "0.1.0-alpha"
+description: "Local-first PKM app with local AI assistant"
+
+build:
+  beforeDistCommand: "npm run build"
+
+security:
+  csp: default
+
+window:
+  title: "Codex Portátil"
+  width: 1200
+  height: 800
+  minWidth: 800
+  minHeight: 600
+  resizable: true
+  fullScreen: false
+
+[tauri.linux]
+image: {arch = "x86_64"}
+
+[tauri.windows]
+msi:
+  identityName: "Codex Portátil"
+
+[tauri.macOS]
+signingIdentity: "" # Will be configured for notarization
+
+[target]
+debug = true
+release = { strip = true, optimize = true }

@@ -1,0 +1,31 @@
+[package]
+name = "codex-core"
+version = "0.1.0"
+edition = "2021"
+description = "Portable PKM core: file watcher, SQLite index, IPC"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "sqlite", "uuid"] }
+rusqlite = "0.32"
+notify = "7"
+crossbeam-channel = "0.5"
+thiserror = "2"
+log = "0.4"
+env_logger = "0.11"
+
+[build-dependencies]
+cc = "1.1"
+
+[[bin]]
+name = "llama-server-wrapper"
+path = "src/bin/llama-server-wrapper.rs"
+
+[[bin]]
+name = "codex-watcher"
+path = "src/bin/codex-watcher.rs"

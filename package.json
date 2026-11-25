@@ -1,0 +1,20 @@
+{
+  "name": "codex-portable",
+  "version": "0.1.0",
+  "description": "Local-first PKM with local AI assistant",
+  "private": true,
+  "scripts": {
+    "install:win": "run-os-detective --os win --arch x86_64",
+    "install:mac": "run-os-detective --os darwin --arch x86_64",
+    "install:linux": "run-os-detective --os linux --arch x86_64",
+    "test": "vitest",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0",
+    "playwright": "^1.40.0"
+  }
+}
