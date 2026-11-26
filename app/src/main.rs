@@ -54,7 +54,7 @@ fn get_graph_properties(note_id: Option<&str>) -> String {
 }
 
 #[tauri::command]
-fn build_local_subgraph(current_note_id: &str, max_hops: u32 = 2) -> String {
+fn build_local_subgraph(current_note_id: &str, max_hops: u32) -> String {
     if let Some(id) = current_note_id {
         format!("[{}] Subgrafo local (max {h} hops): {:?}".format(id, max_hops, build_local_subgraph(id, max_hops)))
     } else {
@@ -65,39 +65,27 @@ fn build_local_subgraph(current_note_id: &str, max_hops: u32 = 2) -> String {
 #[tauri::command]
 fn get_embeddings(note_id: Option<&str>) -> String {
     if let Some(id) = note_id {
-        format!("[{}] Embeddings: {:?}".format(id, get_embeddings(id)))
+        format!("[{}] Embeddings: {:?}".format(id, detect_and_get_embeddings(id)))
     } else {
         "Embeddings do banco de dados".to_string()
     }
 }
 
 #[tauri::command]
-fn view_notes(note_id: Option<&str>) -> String {
-    if let Some(id) = note_id {
-        format!("[{}] Notas: {:?}".format(id, list_notes()))
+fn run_llama_sidecar() -> String {
+    "Executar sidecar llama.cpp (GGUF) para inferência local: ".to_string()
+}
+
+#[tauri::command]
+fn detect_hardware() -> String {
+    let cpu = std::process::id();
+    if cpu == 0 || cpu == 1 { // macOS
+        "Metal"
+    } else if cpu >= 4 && (cpu & 2) != 0 || (cpu & 3) != 0 { // Windows/Linux with GPU
+        "Vulkan/CUDA"
     } else {
-        "Todas as notas".to_string()
+        "AVX2/NEON (CPU fallback)"
     }
-}
-
-#[tauri::command]
-fn view_table() -> String {
-    "Tabela — todas as notas (frontmatter + body)".to_string()
-}
-
-#[tauri::command]
-fn view_kanban() -> String {
-    "Kanban — filtros por tag/propriedade".to_string()
-}
-
-#[tauri::command]
-fn view_list() -> String {
-    "Lista — notas em ordem de criação".to_string()
-}
-
-#[tauri::command]
-fn view_calendar() -> String {
-    "Calendário — data das notas".to_string()
 }
 
 fn main() {
