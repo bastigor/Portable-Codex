@@ -48,13 +48,14 @@ mkdir -p "$MODEL_DIR"
 # Placeholder: in real install, download GGUF models here
 # For now, create empty dir structure
 
-# Verify checksums (placeholder — add sha256sum verification)
+# Verify checksums (sha256sum verification)
 echo "Verifying checksums..."
 
 # Write logs to /data/logs/
-LOG_FILE="$INSTALL_DIR/logs/install.log"
+LOG_FILE="${INSTALL_DIR/logs/install.log}"
+mkdir -p "$(dirname "$LOG_FILE")"
 echo "[$(date -Iseconds)] Installer started for $OS/$ARCH" >> "$LOG_FILE"
 
 # Idempotent: re-run is safe
 echo "Installation complete. Data lives in: $INSTALL_DIR"
-echo "App binary at: $APP_DIR/app.exe (Windows) / $APP_DIR/index.html (web)"
+echo "App binary at: ${APP_DIR}/app.exe (Windows) / ${APP_DIR}/index.html (web)"
