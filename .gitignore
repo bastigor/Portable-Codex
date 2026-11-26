@@ -1,9 +1,21 @@
-node_modules/
-dist/
-build/
-*.log
-data/*.db
-__pycache__/
-.env
+# .gitignore
+
+# Build artifacts
+target/
+*.o
+**/*.rs.bk
+
+# Tauri
+.tauri.toml
+tauri-build/
+
+# Rust target dirs (keep only for build)
+Cargo.lock
+
+# OS
 .DS_Store
 Thumbs.db
+
+# Environment / logs
+/data/logs/*
+/data/cache/*

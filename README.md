@@ -1,19 +1,31 @@
-# Codex Portátil
+# Codex Portátil (Codex Portable)
 
-Aplicativo de gestão de conhecimento pessoal (PKM) local-first, com assistência de IA local, totalmente portátil e multiplataforma.
+Personal Knowledge Management app — local-first, Obsidian + Notion hybrid.
 
-## Visão do Produto
+## Features
+- **Vault**: Markdown files (.md) with YAML frontmatter, wikilinks, backlinks, graph
+- **Editor**: Block-based (ProseMirror/TipTap), menu "/", drag & drop reorder
+- **AI Copilot**: Local LLM (llama.cpp GGUF), silent suggestions, ghost text opt-in
+- **Database**: SQLite WAL + FTS5 + sqlite-vec for embeddings
+- **Views**: Tables, kanban, lists, calendar — per properties
+- **Search**: Full-text, property, tag, semantic (embeddings)
+- **Portable**: Single install script, no network at runtime, zero external writes
 
-Une a simplicidade e propriedade dos arquivos Markdown do Obsidian com uma interface limpa baseada em blocos inspirada no Notion, tudo rodando 100% offline com um copiloto de IA local silencioso.
+## Architecture
+- Rust core + Tauri 2 frontend
+- Monorepo: `/app/`, `/models/`, `/data/`, `/scripts/`, `/docs/`
+- No telemetry, no cloud, no admin rights needed
 
-## Requisitos Principais
+## Quick Start (Windows)
+```cmd
+C:\Users\João Pedro\Documents\projetos\codex-portable\install.sh
+```
 
-- **Soberania dos dados**: Arquivos .md como fonte da verdade
-- **Privacidade total**: Zero requisições de rede em runtime
-- **Portabilidade real**: Tudo roda a partir de um pendrive
-- **Silêncio e discrição**: IA como copiloto, não chatbot invasivo
-- **Desempenho**: Vaults de 50.000 notas utilizáveis
+## Requirements
+- Rust 1.75+ (or cargo from crates.io)
+- Tauri 1.6+
+- macOS: Apple Silicon or Intel
+- Linux: x86_64 or arm64
 
-## Stack Técnica (Fase 1)
-
-A ser definida após os spikes da Fase 0.
+## License
+MIT OR Apache-2.0

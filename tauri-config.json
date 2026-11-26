@@ -1,0 +1,26 @@
+{
+  "target_os": "universal",
+  "debugger": "tauri-debugger",
+  "ui": {
+    "theme": "light",
+    "sidebar": true,
+    "navigation": "tabs"
+  },
+  "shells": [
+    {
+      "name": "windows",
+      "command": "/usr/local/bin/tauri-build --target windows",
+      "architectures": ["x86_64", "arm64"]
+    }
+  ],
+  "webview": {
+    "enabled": false,
+    "fallback": "tauri-web"
+  },
+  "plugins": [
+    {
+      "name": "prose-mirror",
+      "version": "0.17"
+    }
+  ]
+}
