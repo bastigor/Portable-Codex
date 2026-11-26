@@ -5,6 +5,7 @@ use projs::editor as editor;
 mod ui;
 mod plugins;
 mod graph;
+mod llama_sidecar;
 
 #[tauri::command]
 fn open_editor() -> String {
@@ -65,7 +66,7 @@ fn build_local_subgraph(current_note_id: &str, max_hops: u32) -> String {
 #[tauri::command]
 fn get_embeddings(note_id: Option<&str>) -> String {
     if let Some(id) = note_id {
-        format!("[{}] Embeddings: {:?}".format(id, detect_and_get_embeddings(id)))
+        format!("[{}] Embeddings: {:?}".format(id, run_llama_sidecar(), detect_and_get_embeddings(id)))
     } else {
         "Embeddings do banco de dados".to_string()
     }
