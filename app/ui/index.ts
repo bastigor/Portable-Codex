@@ -33,3 +33,12 @@ export const Index = () => {
     </main>
   );
 };
+
+// Copiloto — LLM suggestions (silent)
+<div className="suggestions">
+    {/* Suggestions from getSuggestions() */}
+  </div>
+
+  // Ghost text toggle
+  <button onClick={ghostTextToggle}>Ghost Text</button>
+};
