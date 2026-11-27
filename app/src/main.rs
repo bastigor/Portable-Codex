@@ -91,7 +91,7 @@ fn detect_and_get_embeddings(note_id: Option<&str>) -> Vec<String> {
 #[tauri::command]
 fn get_suggestions(note_id: Option<&str>) -> String {
     if let Some(id) = note_id {
-        format!("[{}] Sugestão do LLM: {:?}", id, run_llama_sidecar(), detect_and_get_embeddings(id))
+        format!("[{}] Sugestão do LLM: {:?}", id, run_llama("llama-sidecar"), detect_and_get_embeddings(id))
     } else {
         "Sugestões de embeddings disponíveis".to_string()
     }
