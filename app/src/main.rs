@@ -73,15 +73,15 @@ fn get_embeddings(note_id: Option<&str>) -> String {
 }
 
 #[tauri::command]
-fn run_llama_sidecar() -> String {
-    "Executar sidecar llama.cpp (GGUF) para inferência local: ".to_string()
+fn run_llama_sidecar(model: &str) -> String {
+    run_llama(model)
 }
 
 #[tauri::command]
 fn detect_and_get_embeddings(note_id: Option<&str>) -> Vec<String> {
     if let Some(id) = note_id {
         vec![
-            format!("[{}] Embedido: {:?}", id, run_llama_sidecar(), detect_and_get_embeddings(id)),
+            format!("[{}] Embedido: {:?}", id, run_llama("llama-sidecar"), "detect...")
         ]
     } else {
         vec![]
