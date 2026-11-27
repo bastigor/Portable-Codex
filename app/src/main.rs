@@ -78,6 +78,26 @@ fn run_llama_sidecar() -> String {
 }
 
 #[tauri::command]
+fn detect_and_get_embeddings(note_id: Option<&str>) -> Vec<String> {
+    if let Some(id) = note_id {
+        vec![
+            format!("[{}] Embedido: {:?}", id, run_llama_sidecar(), detect_and_get_embeddings(id)),
+        ]
+    } else {
+        vec![]
+    }
+}
+
+#[tauri::command]
+fn get_suggestions(note_id: Option<&str>) -> String {
+    if let Some(id) = note_id {
+        format!("[{}] Sugestão do LLM: {:?}", id, run_llama_sidecar(), detect_and_get_embeddings(id))
+    } else {
+        "Sugestões de embeddings disponíveis".to_string()
+    }
+}
+
+#[tauri::command]
 fn detect_hardware() -> String {
     let cpu = std::process::id();
     if cpu == 0 || cpu == 1 { // macOS
